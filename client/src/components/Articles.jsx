@@ -1,16 +1,17 @@
 import React from "react";
+import moment from "moment";
 
 const Articles = (props) => (
   <div>
-    {console.log(props.articles)}
     {props.articles.map((item, i) => {
       return(
       <div key={i}>
         <div><a href={item.url}>{item.title}</a></div>
         <div>{item.author}</div>
         <div>{item.source.name}</div>
-        <div src={item.urlToImage}></div>
+        <img src={item.urlToImage}></img>
         <div>{item.description}</div>
+        <div>{moment(item.publishedAt).fromNow()}</div>
       </div>
       )
     })}
