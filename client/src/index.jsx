@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import News from "./components/News.jsx";
+import Axios from "axios";
 
 
 class App extends React.Component {
@@ -8,11 +9,10 @@ class App extends React.Component {
     super(props);
   }
 
-
   render() {
     return (
       <div>
-        <News />
+        <News/>
       </div>
     )
   }

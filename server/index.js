@@ -13,11 +13,10 @@ app.listen(port, function() {
   console.log(`Listening on port ${port}`);
 });
 
-
-app.get('/news', (req, res) => {
-  axios.get(`https://newsapi.org/v2/everything?sources=recode,hacker-news,the-verge,techcrunch&sortBy=publishedAt&apiKey=${token}`)
+app.post('/news', (req, res) => {
+  let query = req.body.term;
+  axios.get(`https://newsapi.org/v2/everything?q=${query}&sortBy=publishedAt&sources=recode,hacker-news,the-verge,techcrunch&language=en&apiKey=${token}`)
   .then(({data}) => {
-    console.log(data.articles)
     res.status(200).send(data)
   })
   .catch((err) => {
