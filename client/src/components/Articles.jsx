@@ -12,7 +12,9 @@ const Articles = (props) => (
         <img src={item.urlToImage}></img>
         <div>{item.description}</div>
         <div>{moment(item.publishedAt).fromNow()}</div>
-        <button>Save Article</button>
+        <button onClick={() => {props.save(item)}}>Save Article</button>
+        <br/>
+        <br/>
       </div>
       )
     })}

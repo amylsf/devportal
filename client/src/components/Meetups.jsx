@@ -6,7 +6,7 @@ class Meetups extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: '',
+      query: null,
       meetups: []
     }
     this.search = this.search.bind(this);
@@ -14,12 +14,12 @@ class Meetups extends React.Component {
   }
 
   componentDidMount() {
-    this.search('Javascript');
+    this.search();
   }
 
   search() {
     axios.post('/meetups', {
-      query: this.state.query
+      query: this.state.query || 'Javascript'
     })
     .then(({data}) => {
       console.log(data);

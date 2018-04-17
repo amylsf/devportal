@@ -8,19 +8,20 @@ class News extends React.Component {
     this.state = {
       articles: [],
       favorites: [],
-      query: ''
+      query: null
     }
     this.search = this.search.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.save = this.save.bind(this);
   }
 
   componentDidMount() {
-    this.search('Uber');
+    this.search();
   }
 
   search() {
     axios.post('/news', {
-      term: this.state.query
+      term: this.state.query || 'Uber'
     })
     .then(({data}) => {
       this.setState({
@@ -38,12 +39,22 @@ class News extends React.Component {
     })
   }
 
+  save(item) {
+    axios.post('/save', {article: item})
+    .then(({data}) => {
+      console.log('Item saved successfully.')
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   render() {
     return(
       <div className="articles-container">
       <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
       <button onClick={this.search}>Search News</button>
-      <Articles articles={this.state.articles}/>
+      <Articles save={this.save} articles={this.state.articles}/>
       </div>
     )
   }

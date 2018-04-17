@@ -9,6 +9,7 @@ const MeetupList = (props) => (
         <div><a href={item.link}>{item.name}</a></div>
         <div>{item.group.name}</div>
         <div>{item.local_date}</div>
+        <br/>
       </div>
     )
   })}
