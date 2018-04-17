@@ -8,14 +8,14 @@ class News extends React.Component {
     this.state = {
       articles: [],
       favorites: [],
-      query: 'Uber'
+      query: ''
     }
     this.search = this.search.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   // componentDidMount() {
-  //   this.search();
+  //   this.search('Uber');
   // }
 
   search() {
