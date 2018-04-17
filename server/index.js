@@ -26,7 +26,7 @@ app.post('/news', (req, res) => {
 
 app.post('/meetups', (req, res) => {
   let query = req.body.query
-  axios.get(`https://api.meetup.com/find/upcoming_events?photo-host=public&page=20&text=${query}&sig_id=208321078&radius=20&order=best&sig=3abf5cf65cd8ca65d813e1c8401dc685e8aec4dc`)
+  axios.get(`https://api.meetup.com/find/upcoming_events?key=${token.MEETUP_TOKEN}&sign=true&photo-host=public&page=20&text=${query}&radius=20&order=best`)
   .then(({data}) => {
     res.status(200).send(data);
   })

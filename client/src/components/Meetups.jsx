@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import MeetupList from './MeetupList.jsx';
 
 class Meetups extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: ''
+      query: '',
+      meetups: []
     }
     this.search = this.search.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -17,6 +19,9 @@ class Meetups extends React.Component {
     })
     .then(({data}) => {
       console.log(data);
+      this.setState({
+        meetups: data.events
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -29,12 +34,12 @@ class Meetups extends React.Component {
     })
   }
 
-
   render() {
     return(
       <div>
         <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
         <button onClick={this.search}>Search Meetups</button>
+        {this.state.meetups.length === 0 ? null : <MeetupList meetups={this.state.meetups}/>}
       </div>
     )
   }
