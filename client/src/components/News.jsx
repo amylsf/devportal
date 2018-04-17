@@ -14,9 +14,9 @@ class News extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.search('Uber');
-  // }
+  componentDidMount() {
+    this.search('Uber');
+  }
 
   search() {
     axios.post('/news', {
@@ -40,7 +40,7 @@ class News extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="articles-container">
       <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
       <button onClick={this.search}>Search News</button>
       <Articles articles={this.state.articles}/>

@@ -13,6 +13,10 @@ class Meetups extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    this.search('Javascript');
+  }
+
   search() {
     axios.post('/meetups', {
       query: this.state.query
@@ -36,7 +40,7 @@ class Meetups extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="meetups-container">
         <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
         <button onClick={this.search}>Search Meetups</button>
         {this.state.meetups.length === 0 ? null : <MeetupList meetups={this.state.meetups}/>}

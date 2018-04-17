@@ -1,7 +1,19 @@
 .articles-container {
-  width: 500px
+  float: left;
+  margin-left: 30px;
+  margin-right: 200px;
+  width: 50%;
 }
 
 img {
   width: 400px
+}
+
+.meetups-container {
+  width: 20%;
+  float: left;
+}
+
+.clear {
+  clear: both;
 }
