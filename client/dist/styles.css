@@ -17,3 +17,18 @@ img {
 .clear {
   clear: both;
 }
+
+.jobs-container {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.job {
+  display: block;
+  float: left;
+  width: 200px;
+  text-align: center;
+  padding: 10px;
+}
+

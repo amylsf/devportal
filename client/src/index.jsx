@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Jobs from "./components/Jobs.jsx";
 import News from "./components/News.jsx";
 import Meetups from "./components/Meetups.jsx";
 import Axios from "axios";
@@ -13,6 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
+        <Jobs/>
         <News/>
         <Meetups />
         <div className="clear"></div>
