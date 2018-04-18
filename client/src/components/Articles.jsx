@@ -12,7 +12,7 @@ const Articles = (props) => (
         <img src={item.urlToImage}></img>
         <div>{item.description}</div>
         <div>{moment(item.publishedAt).fromNow()}</div>
-        <button onClick={() => {props.save(item)}}>Save Article</button>
+        <button onClick={() => {props.handleClick(item)}}>{props.showFavorites ? "Delete Article" : "Save Article"}</button>
         <br/>
         <br/>
       </div>

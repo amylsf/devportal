@@ -14,7 +14,8 @@ class News extends React.Component {
     this.search = this.search.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.save = this.save.bind(this);
-    this.swapFavorites = this.swapFavorites.bind(this);
+    this.toggleFavorites = this.toggleFavorites.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -46,11 +47,11 @@ class News extends React.Component {
     axios.post('/save', {article: item})
     .then(({data}) => {
       console.log('Item saved successfully.')
+      this.getFavorites();
     })
     .catch((err) => {
       console.log(err);
     })
-    this.getFavorites();
   }
 
   getFavorites() {
@@ -69,30 +70,30 @@ class News extends React.Component {
     axios.post('/delete', {article: item})
     .then(({data}) => {
       console.log('Deleted');
+      this.getFavorites();
     })
     .catch((err) => {
       console.log(err);
     })
-    this.getFavorites();
   }
 
-  swapFavorites() {
+  toggleFavorites() {
     this.setState({
       showFavorites: !this.state.showFavorites
     })
   }
 
-  // handleClick(article) {
-  //   this.state.showFavorites ? 
-  // }
+  handleClick(article) {
+    this.state.showFavorites ? this.delete(article) : this.save(article)
+  }
 
   render() {
     return(
       <div className="articles-container">
       <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
       <button onClick={this.search}>Search News</button>
-      <button onClick={this.swapFavorites}>{this.state.showFavorites ? "Search Results" : "Show Favorites"}</button>
-      <Articles save={this.save} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
+      <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Search Results" : "Show Favorites"}</button>
+      <Articles showFavorites={this.state.showFavorites} handleClick={this.handleClick} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
       </div>
     )
   }
