@@ -41,3 +41,16 @@ app.post('/save', (req, res) => {
     res.status(201).send('Saved article to Favorites');
   })
 })
+
+app.post('/delete', (req, res) => {
+  db.remove(req.body.article).then(() => {
+    res.status(201).send('Article deleted from Favorites');
+  })
+})
+
+app.get('/favorites', (req, res) => {
+  db.News.find({})
+  .then((data) => {
+    res.status(200).send(data);
+  })
+})

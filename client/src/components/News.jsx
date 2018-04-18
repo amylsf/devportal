@@ -8,15 +8,18 @@ class News extends React.Component {
     this.state = {
       articles: [],
       favorites: [],
-      query: null
+      query: null,
+      showFavorites: false
     }
     this.search = this.search.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.save = this.save.bind(this);
+    this.swapFavorites = this.swapFavorites.bind(this);
   }
 
   componentDidMount() {
     this.search();
+    this.getFavorites();
   }
 
   search() {
@@ -47,14 +50,49 @@ class News extends React.Component {
     .catch((err) => {
       console.log(err);
     })
+    this.getFavorites();
   }
+
+  getFavorites() {
+    axios.get('/favorites')
+    .then(({data}) => {
+      this.setState({
+        favorites: data
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  delete(item) {
+    axios.post('/delete', {article: item})
+    .then(({data}) => {
+      console.log('Deleted');
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    this.getFavorites();
+  }
+
+  swapFavorites() {
+    this.setState({
+      showFavorites: !this.state.showFavorites
+    })
+  }
+
+  // handleClick(article) {
+  //   this.state.showFavorites ? 
+  // }
 
   render() {
     return(
       <div className="articles-container">
       <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
       <button onClick={this.search}>Search News</button>
-      <Articles save={this.save} articles={this.state.articles}/>
+      <button onClick={this.swapFavorites}>{this.state.showFavorites ? "Search Results" : "Show Favorites"}</button>
+      <Articles save={this.save} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
       </div>
     )
   }

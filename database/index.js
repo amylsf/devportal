@@ -20,4 +20,14 @@ let save = (article) => {
   })
 }
 
+let remove = (article) => {
+  return News.remove({title: article.title}, function(err) {
+    if (err) {
+      console.log(err);
+    }
+  })
+}
+
 module.exports.save = save;
+module.exports.remove = remove;
+module.exports.News = News;
