@@ -15,8 +15,10 @@ class App extends React.Component {
     return (
       <div className="container">
         <Jobs/>
+        <hr/>
         <br/>
         <News/>
+        <div className="vertical-line"></div>
         <Meetups />
         <div className="clear"></div>
       </div>

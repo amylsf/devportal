@@ -13,9 +13,9 @@ class Jobs extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.search();
-  // }
+  componentDidMount() {
+    this.search();
+  }
 
   search() {
     axios.post('/jobs', {

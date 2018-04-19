@@ -1,5 +1,6 @@
 body {
   font-family: 'Raleway', sans-serif;
+  margin-bottom: 20px;
 }
 
 .news-container {
@@ -48,13 +49,14 @@ img {
   margin-left: 40px;
   margin-bottom: 20px;
   padding: 0;
-  width: 1200px;
-  height: 150px;
+  width: 1300px;
+  height: 100px;
   overflow: scroll;
 }
 
 .jobs-list {
   width: 5000px;
+  margin-top: 10px;
 }
 
 .jobs-header {
@@ -89,6 +91,14 @@ button {
   font-family: 'Raleway', sans-serif;
 }
 
+button:focus {
+  outline: 0;
+}
+
+button:hover {
+  background-color:#DDDDDD;
+}
+
 a {
   color: black;
   cursor:pointer;
@@ -96,7 +106,7 @@ a {
 }
 
 a:hover {
-  color: blue;
+  color: #1BA5D7;
   text-decoration: underline;
 }
 
@@ -123,8 +133,28 @@ a:hover {
 
 .job-title {
   font-weight: 700;
+  margin-bottom: 5px;
 }
 
 .meetup-title {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.meetup-group {
+  margin-bottom: 5px;
+}
+
+.meetup-date {
+  margin-bottom: 5px;
   font-weight: 600;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
 }
