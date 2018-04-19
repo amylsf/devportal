@@ -18,10 +18,10 @@ class News extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    this.search();
-    this.getFavorites();
-  }
+  // componentDidMount() {
+  //   this.search();
+  //   this.getFavorites();
+  // }
 
   search() {
     axios.post('/news', {
@@ -90,11 +90,12 @@ class News extends React.Component {
 
   render() {
     return(
-      <div className="articles-container">
-      <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
-      <button onClick={this.search}>Search News</button>
-      <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Search Results" : "Show Favorites"}</button>
-      <NewsList showFavorites={this.state.showFavorites} handleClick={this.handleClick} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
+      <div className="news-container">
+        <div className="header">Tech News</div>
+        <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
+        <button onClick={this.search}>Search News</button>
+        <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Search Results" : "Show Favorites"}</button>
+        <NewsList showFavorites={this.state.showFavorites} handleClick={this.handleClick} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
       </div>
     )
   }

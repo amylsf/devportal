@@ -5,16 +5,13 @@ const NewsList = (props) => (
   <div className="news-list">
     {props.articles.map((item, i) => {
       return(
-      <div key={i}>
-        <div><a href={item.url}>{item.title}</a></div>
-        <div>{item.author}</div>
-        <div>{item.source.name}</div>
-        <img src={item.urlToImage}></img>
-        <div>{item.description}</div>
-        <div>{moment(item.publishedAt).fromNow()}</div>
+      <div key={i} className="news">
+        <div className="news-title"><a href={item.url}>{item.title}</a></div>
+        <div className="news-source">{item.source.name}</div>
+        <div className="news-date">{moment(item.publishedAt).fromNow()}</div>
+        <a href={item.url}><img src={item.urlToImage}></img></a>
+        <div className="news-description">{item.description}</div>
         <button onClick={() => {props.handleClick(item)}}>{props.showFavorites ? "Delete Article" : "Save Article"}</button>
-        <br/>
-        <br/>
       </div>
       )
     })}

@@ -1,7 +1,11 @@
-.articles-container {
+body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.news-container {
   float: left;
-  margin-left: 30px;
-  margin-right: 200px;
+  margin-left: 40px;
+  margin-right: 150px;
   width: 50%;
 }
 
@@ -11,12 +15,18 @@
   margin-top: 20px;
 }
 
+.news {
+  margin-bottom: 20px;
+}
+
 img {
-  width: 400px
+  width: 600px;
+  margin-bottom: 5px;
+  cursor:pointer;
 }
 
 .meetups-container {
-  width: 25%;
+  width: 28%;
   float: left;
 }
 
@@ -26,20 +36,29 @@ img {
   margin-top: 20px;
 }
 
+.meetup {
+  margin-bottom: 20px;
+}
+
 .clear {
   clear: both;
 }
 
 .jobs-container {
-  margin-left: 30px;
+  margin-left: 40px;
+  margin-bottom: 20px;
   padding: 0;
   width: 1200px;
-  height: 120px;
+  height: 150px;
   overflow: scroll;
 }
 
 .jobs-list {
-  width: 10000px;
+  width: 5000px;
+}
+
+.jobs-header {
+  margin-left: 40px;
 }
 
 .job {
@@ -47,5 +66,65 @@ img {
   float: left;
   text-align: center;
   padding: 10px;
-  width: 200px;
+  width: 250px;
+}
+
+.page-header {
+  margin-left: 40px;
+  margin-bottom: 40px;
+}
+
+.header {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+button {
+  border-radius: 8px;
+  font-weight: 500;
+  cursor:pointer;
+  font-size: 12px;
+  margin-right: 5px;
+  font-family: 'Raleway', sans-serif;
+}
+
+a {
+  color: black;
+  cursor:pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.news-title {
+  font-weight: 600; 
+  margin-bottom: 10px;
+  font-size: 18px;
+  width: 600px;
+}
+
+.news-source {
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.news-date {
+  margin-bottom: 5px;
+}
+
+.news-description {
+  margin-bottom: 5px;
+  width: 600px;
+}
+
+.job-title {
+  font-weight: 700;
+}
+
+.meetup-title {
+  font-weight: 600;
 }

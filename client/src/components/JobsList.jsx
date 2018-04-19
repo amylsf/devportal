@@ -6,8 +6,8 @@ const JobsList = (props) => (
   {props.jobs.map((job, i) => {
     return (
       <div key={i} className="job">
-        <div><a href={job.url}>{job.title}</a></div>
-        <div>{job.company}</div>
+        <div className="job-title"><a href={job.url}>{job.title}</a></div>
+        <div className="job-company">{job.company}</div>
       </div>
     )
   })}

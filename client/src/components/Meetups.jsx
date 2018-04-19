@@ -20,10 +20,10 @@ class Meetups extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    this.search();
-    this.getFavorites();
-  }
+  // componentDidMount() {
+  //   this.search();
+  //   this.getFavorites();
+  // }
 
   search() {
     axios.post('/meetups', {
@@ -95,6 +95,7 @@ class Meetups extends React.Component {
   render() {
     return(
       <div className="meetups-container">
+        <div className="header">Local Meetups</div>
         <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
         <button onClick={this.search}>Search Meetups</button>
         <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Upcoming Meetups" : "Saved Meetups"}</button>

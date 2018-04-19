@@ -13,9 +13,9 @@ class Jobs extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    this.search();
-  }
+  // componentDidMount() {
+  //   this.search();
+  // }
 
   search() {
     axios.post('/jobs', {
@@ -40,10 +40,15 @@ class Jobs extends React.Component {
 
   render() {
     return (
-      <div className="jobs-container">
-        <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
-        <button onClick={this.search}>Find Jobs</button>
-        <JobsList jobs={this.state.jobs}/>
+      <div>
+        <div className="jobs-header">
+            <div className="header">Open Jobs</div>
+            <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
+            <button onClick={this.search}>Find Jobs</button>
+        </div>
+        <div className="jobs-container">
+          <JobsList jobs={this.state.jobs}/>
+        </div>
       </div>
     )
   }
