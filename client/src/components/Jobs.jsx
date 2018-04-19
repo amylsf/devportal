@@ -13,14 +13,18 @@ class Jobs extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    this.search();
+  }
+
   search() {
     axios.post('/jobs', {
-      query: this.state.query || 'full-stack'
+      query: this.state.query || 'javascript'
     })
     .then(({data}) => {
       console.log('this is', data);
       this.setState({
-        jobs: data.slice(0, 5)
+        jobs: data
       })
     })
     .catch((err) => {
@@ -36,7 +40,7 @@ class Jobs extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="jobs-container">
         <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
         <button onClick={this.search}>Find Jobs</button>
         <JobsList jobs={this.state.jobs}/>

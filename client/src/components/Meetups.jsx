@@ -20,9 +20,10 @@ class Meetups extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.search();
-  // }
+  componentDidMount() {
+    this.search();
+    this.getFavorites();
+  }
 
   search() {
     axios.post('/meetups', {
@@ -97,7 +98,7 @@ class Meetups extends React.Component {
         <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
         <button onClick={this.search}>Search Meetups</button>
         <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Upcoming Meetups" : "Saved Meetups"}</button>
-        {this.state.meetups.length === 0 ? null : <MeetupsList handleClick={this.handleClick} meetups={this.state.showFavorites ? this.state.favorites : this.state.meetups} showFavorites={this.state.showFavorites}/>}
+        <MeetupsList handleClick={this.handleClick} meetups={this.state.showFavorites ? this.state.favorites : this.state.meetups} showFavorites={this.state.showFavorites}/>
       </div>
     )
   }

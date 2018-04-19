@@ -2,7 +2,7 @@ import React from "react";
 
 
 const JobsList = (props) => (
-  <div className="jobs-container">
+  <div className="jobs-list">
   {props.jobs.map((job, i) => {
     return (
       <div key={i} className="job">

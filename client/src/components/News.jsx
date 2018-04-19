@@ -18,10 +18,10 @@ class News extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.search();
-  //   this.getFavorites();
-  // }
+  componentDidMount() {
+    this.search();
+    this.getFavorites();
+  }
 
   search() {
     axios.post('/news', {

@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const MeetupsList = (props) => (
-  <div>
+  <div className="meetups-list">
   {props.meetups.map((item) => {
     return (
       <div key={item.id}>

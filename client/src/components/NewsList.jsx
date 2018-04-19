@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 
 const NewsList = (props) => (
-  <div>
+  <div className="news-list">
     {props.articles.map((item, i) => {
       return(
       <div key={i}>
