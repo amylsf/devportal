@@ -11,16 +11,25 @@ let newsSchema = mongoose.Schema({
   publishedAt: String
 })
 
-let News = mongoose.model('News', newsSchema);
+let meetupSchema = mongoose.Schema({
+  id: String,
+  name: String,
+  "group.name": String,
+  link: String,
+  local_date: String
+})
 
-let save = (article) => {
+let News = mongoose.model('News', newsSchema);
+let Meetups = mongoose.model('Meetups', meetupSchema);
+
+module.exports.saveNews = (article) => {
   return News.create(article)
   .catch((err) => {
     console.log(err);
   })
 }
 
-let remove = (article) => {
+module.exports.removeNews = (article) => {
   return News.remove({title: article.title}, function(err) {
     if (err) {
       console.log(err);
@@ -28,6 +37,20 @@ let remove = (article) => {
   })
 }
 
-module.exports.save = save;
-module.exports.remove = remove;
+module.exports.saveMeetup = (meetup) => {
+  return Meetups.create(meetup)
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+module.exports.removeMeetup = (meetup) => {
+  return Meetups.remove({id: meetup.id}, function(err) {
+    if (err) {
+      console.log(err);
+    }
+  })
+}
+
 module.exports.News = News;
+module.exports.Meetups = Meetups;

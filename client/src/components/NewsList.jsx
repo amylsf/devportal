@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 
-const Articles = (props) => (
+const NewsList = (props) => (
   <div>
     {props.articles.map((item, i) => {
       return(
@@ -22,4 +22,4 @@ const Articles = (props) => (
 )
 
 
-export default Articles;
+export default NewsList;

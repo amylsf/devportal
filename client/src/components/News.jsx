@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Articles from './Articles.jsx'
+import NewsList from './NewsList.jsx'
 
 class News extends React.Component {
   constructor(props) {
@@ -29,7 +29,8 @@ class News extends React.Component {
     })
     .then(({data}) => {
       this.setState({
-        articles: data.articles
+        articles: data.articles,
+        showFavorites: false
       })
     })
     .catch((err) => {
@@ -44,7 +45,7 @@ class News extends React.Component {
   }
 
   save(item) {
-    axios.post('/save', {article: item})
+    axios.post('/saveNews', {article: item})
     .then(({data}) => {
       console.log('Item saved successfully.')
       this.getFavorites();
@@ -55,7 +56,7 @@ class News extends React.Component {
   }
 
   getFavorites() {
-    axios.get('/favorites')
+    axios.get('/favoriteNews')
     .then(({data}) => {
       this.setState({
         favorites: data
@@ -67,7 +68,7 @@ class News extends React.Component {
   }
 
   delete(item) {
-    axios.post('/delete', {article: item})
+    axios.post('/deleteNews', {article: item})
     .then(({data}) => {
       console.log('Deleted');
       this.getFavorites();
@@ -93,7 +94,7 @@ class News extends React.Component {
       <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
       <button onClick={this.search}>Search News</button>
       <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Search Results" : "Show Favorites"}</button>
-      <Articles showFavorites={this.state.showFavorites} handleClick={this.handleClick} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
+      <NewsList showFavorites={this.state.showFavorites} handleClick={this.handleClick} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
       </div>
     )
   }

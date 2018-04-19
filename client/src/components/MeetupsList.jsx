@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const MeetupList = (props) => (
+const MeetupsList = (props) => (
   <div>
   {props.meetups.map((item) => {
     return (
@@ -9,6 +9,7 @@ const MeetupList = (props) => (
         <div><a href={item.link}>{item.name}</a></div>
         <div>{item.group.name}</div>
         <div>{item.local_date}</div>
+        <button onClick={() => {props.handleClick(item)}}>{props.showFavorites ? "Remove Meetup" : "I'm interested"}</button>
         <br/>
       </div>
     )
@@ -17,4 +18,4 @@ const MeetupList = (props) => (
 )
 
 
-export default MeetupList;
+export default MeetupsList;

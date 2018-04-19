@@ -1,16 +1,23 @@
 import React from 'react';
 import axios from 'axios';
-import MeetupList from './MeetupList.jsx';
+import MeetupsList from './MeetupsList.jsx';
 
 class Meetups extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       query: null,
-      meetups: []
+      meetups: [],
+      favorites: [],
+      showFavorites: false
     }
     this.search = this.search.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.toggleFavorites = this.toggleFavorites.bind(this);
+    this.save = this.save.bind(this);
+    this.delete = this.delete.bind(this);
+    this.getFavorites = this.getFavorites.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   // componentDidMount() {
@@ -24,7 +31,8 @@ class Meetups extends React.Component {
     .then(({data}) => {
       console.log(data);
       this.setState({
-        meetups: data.events
+        meetups: data.events,
+        showFavorites: false
       })
     })
     .catch((err) => {
@@ -38,12 +46,58 @@ class Meetups extends React.Component {
     })
   }
 
+  save(item) {
+    axios.post('/saveMeetup', {meetup: item})
+    .then(({data}) => {
+      console.log('Meetup saved successfully.')
+      this.getFavorites();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  getFavorites() {
+    axios.get('/favoriteMeetups')
+    .then(({data}) => {
+      this.setState({
+        favorites: data
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  delete(item) {
+    axios.post('/deleteMeetup', {meetup: item})
+    .then(({data}) => {
+      console.log('Deleted');
+      this.getFavorites();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+
+  toggleFavorites() {
+    this.setState({
+      showFavorites: !this.state.showFavorites
+    })
+  }
+
+  handleClick(meetup) {
+    this.state.showFavorites ? this.delete(meetup) : this.save(meetup)
+  }
+
   render() {
     return(
       <div className="meetups-container">
         <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
         <button onClick={this.search}>Search Meetups</button>
-        {this.state.meetups.length === 0 ? null : <MeetupList meetups={this.state.meetups}/>}
+        <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Upcoming Meetups" : "Saved Meetups"}</button>
+        {this.state.meetups.length === 0 ? null : <MeetupsList handleClick={this.handleClick} meetups={this.state.showFavorites ? this.state.favorites : this.state.meetups} showFavorites={this.state.showFavorites}/>}
       </div>
     )
   }

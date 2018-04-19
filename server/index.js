@@ -53,23 +53,45 @@ app.post('/jobs', (req, res) => {
 })
 
 //save news article
-app.post('/save', (req, res) => {
-  db.save(req.body.article).then(() => {
+app.post('/saveNews', (req, res) => {
+  db.saveNews(req.body.article).then(() => {
     res.status(201).send('Saved article to Favorites');
   })
 })
 
 
 //delete news article
-app.post('/delete', (req, res) => {
-  db.remove(req.body.article).then(() => {
+app.post('/deleteNews', (req, res) => {
+  db.removeNews(req.body.article).then(() => {
     res.status(201).send('Article deleted from Favorites');
   })
 })
 
 //get favorite news articles
-app.get('/favorites', (req, res) => {
+app.get('/favoriteNews', (req, res) => {
   db.News.find({})
+  .then((data) => {
+    res.status(200).send(data);
+  })
+})
+
+//save Meetup to favorites
+app.post('/saveMeetup', (req, res) => {
+  db.saveMeetup(req.body.meetup).then(() => {
+    res.status(201).send('Saved Meetup to Favorites');
+  })
+})
+
+//delete Meetup from favorites
+app.post('/deleteMeetup', (req, res) => {
+  db.removeMeetup(req.body.meetup).then(() => {
+    res.status(201).send('Meetup deleted from favorites');
+  })
+})
+
+//get favorite Meetups
+app.get('/favoriteMeetups', (req, res) => {
+  db.Meetups.find({})
   .then((data) => {
     res.status(200).send(data);
   })
