@@ -42,7 +42,7 @@ app.post('/meetups', (req, res) => {
 //Github jobs API request
 app.post('/jobs', (req, res) => {
   let query = req.body.query;
-  let location = '10012';
+  let location = req.body.location;
   axios.get(`https://jobs.github.com/positions.json?search=${query}&location=${location}&full_time=true`)
   .then(({data}) => {
     res.status(200).send(data);

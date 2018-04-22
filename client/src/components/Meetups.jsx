@@ -27,7 +27,8 @@ class Meetups extends React.Component {
 
   search() {
     axios.post('/meetups', {
-      query: this.state.query || 'Javascript'
+      query: this.state.query || 'Javascript',
+      location: this.props.location
     })
     .then(({data}) => {
       data.events.map((item) => {
