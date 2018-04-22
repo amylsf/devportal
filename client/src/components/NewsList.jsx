@@ -12,6 +12,7 @@ const NewsList = (props) => (
         <a href={item.url}><img src={item.urltoimage} className="news-img"></img></a>
         <div className="news-description">{item.description}</div>
         <button onClick={() => {props.handleClick(item)}}>{props.showFavorites ? "Delete Article" : "Save Article"}</button>
+        <hr/>
       </div>
       )
     })}

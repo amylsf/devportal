@@ -99,7 +99,7 @@ class News extends React.Component {
         <div className="header">Tech News</div>
         <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
         <button onClick={this.search}>Search News</button>
-        <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Search Results" : "Show Favorites"}</button>
+        <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Search Results" : "Saved articles"}</button>
         <NewsList showFavorites={this.state.showFavorites} handleClick={this.handleClick} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
       </div>
     )
