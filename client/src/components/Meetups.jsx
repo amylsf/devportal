@@ -30,7 +30,9 @@ class Meetups extends React.Component {
       query: this.state.query || 'Javascript'
     })
     .then(({data}) => {
-      console.log(data);
+      data.events.map((item) => {
+        item.groupname = item.group.name;
+      })
       this.setState({
         meetups: data.events,
         showFavorites: false

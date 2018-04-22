@@ -28,6 +28,11 @@ class News extends React.Component {
       term: this.state.query
     })
     .then(({data}) => {
+      data.articles.map((item) => {
+        item.source = item.source.name;
+        item.urltoimage = item.urlToImage;
+        item.publishedat = item.publishedAt;
+      })
       this.setState({
         articles: data.articles,
         showFavorites: false

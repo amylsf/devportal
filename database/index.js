@@ -1,56 +1,82 @@
-let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/devPortal');
+const pg = require('pg');
 
-let newsSchema = mongoose.Schema({
-  title: {type: String, unique: true},
-  author: String,
-  url: String,
-  "source.name": String,
-  urlToImage: String,
-  description: String,
-  publishedAt: String
-})
+let connection = {
+  host: 'localhost',
+  port: 5432,
+  database: 'devportal',
+  user: '',
+  password: ''
+}
 
-let meetupSchema = mongoose.Schema({
-  id: String,
-  name: String,
-  "group.name": String,
-  link: String,
-  local_date: String
-})
-
-let News = mongoose.model('News', newsSchema);
-let Meetups = mongoose.model('Meetups', meetupSchema);
+let db = new pg.Pool(connection);
 
 module.exports.saveNews = (article) => {
-  return News.create(article)
+  let queryText = `INSERT INTO news(title, author, source, url, urlToImage, description, publishedAt) VALUES($1, $2, $3, $4, $5, $6, $7) ON CONFLICT (title) DO NOTHING`;
+  let values = [article.title, article.author, article.source, article.url, article.urlToImage, article.description, article.publishedAt];
+  return db.query(queryText, values)
+  .then((res) => {
+    console.log(res);
+  })
   .catch((err) => {
     console.log(err);
   })
 }
 
 module.exports.removeNews = (article) => {
-  return News.remove({title: article.title}, function(err) {
-    if (err) {
-      console.log(err);
-    }
+  let queryText = `DELETE FROM news WHERE title=($1)`;
+  let values = [article.title];
+  return db.query(queryText, values)
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+module.exports.getFavoriteNews = () => {
+  let queryText = `SELECT * FROM news`;
+  return db.query(queryText)
+  .then((res) => {
+    // console.log(res.rows)
+    return res.rows;
+  })
+  .catch((err) => {
+    console.log(err);
   })
 }
 
 module.exports.saveMeetup = (meetup) => {
-  return Meetups.create(meetup)
+  let queryText = `INSERT INTO meetups(id, name, groupname, link, local_date) VALUES($1, $2, $3, $4, $5) ON CONFLICT (id) DO NOTHING`;
+  let values = [meetup.id, meetup.name, meetup.groupname, meetup.link, meetup.local_date];
+  return db.query(queryText, values)
+  .then((res) => {
+    console.log(res);
+  })
   .catch((err) => {
     console.log(err);
   })
 }
 
 module.exports.removeMeetup = (meetup) => {
-  return Meetups.remove({id: meetup.id}, function(err) {
-    if (err) {
-      console.log(err);
-    }
+  let queryText = `DELETE FROM meetups WHERE id=($1)`;
+  let values = [meetup.id];
+  return db.query(queryText, values)
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
   })
 }
 
-module.exports.News = News;
-module.exports.Meetups = Meetups;
+module.exports.getFavoriteMeetups = () => {
+  let queryText = `SELECT * FROM meetups`;
+  return db.query(queryText)
+  .then((res) => {
+    return res.rows;
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}

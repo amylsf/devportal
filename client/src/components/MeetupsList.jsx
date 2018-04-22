@@ -7,7 +7,7 @@ const MeetupsList = (props) => (
     return (
       <div key={item.id} className="meetup">
         <div className="meetup-title"><a href={item.link}>{item.name}</a></div>
-        <div className="meetup-group">{item.group.name}</div>
+        <div className="meetup-group">{item.groupname}</div>
         <div className="meetup-date">{item.local_date}</div>
         <button onClick={() => {props.handleClick(item)}}>{props.showFavorites ? "Remove Meetup" : "I'm interested"}</button>
         <br/>

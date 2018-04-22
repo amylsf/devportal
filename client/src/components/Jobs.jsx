@@ -22,7 +22,6 @@ class Jobs extends React.Component {
       query: this.state.query || 'javascript'
     })
     .then(({data}) => {
-      console.log('this is', data);
       this.setState({
         jobs: data
       })
