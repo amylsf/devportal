@@ -4,7 +4,7 @@ let axios = require('axios');
 let token = require('../config.js');
 let port = 3000;
 let app = express();
-let db = require('../database/index.js');
+let db = require('../database/index2.js');
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
@@ -69,7 +69,7 @@ app.post('/deleteNews', (req, res) => {
 
 //get favorite news articles
 app.get('/favoriteNews', (req, res) => {
-  db.News.find({})
+  db.getFavoriteNews()
   .then((data) => {
     res.status(200).send(data);
   })
@@ -91,7 +91,7 @@ app.post('/deleteMeetup', (req, res) => {
 
 //get favorite Meetups
 app.get('/favoriteMeetups', (req, res) => {
-  db.Meetups.find({})
+  db.getFavoriteMeetups()
   .then((data) => {
     res.status(200).send(data);
   })
