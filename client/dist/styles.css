@@ -3,6 +3,16 @@ body {
   margin-bottom: 20px;
 }
 
+.location {
+  float: right;
+  margin-right: 40px;
+  margin-bottom: 20px;
+}
+
+.location-input {
+  margin-left: 5px;
+}
+
 .news-container {
   float: left;
   margin-left: 40px;
@@ -20,15 +30,16 @@ body {
   margin-bottom: 20px;
 }
 
-img {
+.news-img {
   width: 600px;
   margin-bottom: 5px;
   cursor:pointer;
 }
 
 .meetups-container {
-  width: 28%;
-  float: left;
+  width: 30%;
+  float: right;
+  margin-right: 40px;
 }
 
 .meetups-list {
@@ -51,7 +62,7 @@ img {
   margin-bottom: 20px;
   padding: 0;
   width: 1300px;
-  height: 100px;
+  height: 170px;
   overflow: scroll;
 }
 
@@ -70,6 +81,11 @@ img {
   text-align: center;
   padding: 10px;
   width: 250px;
+}
+
+.job-img {
+  width: 80px;
+  margin-top: 5px;
 }
 
 .page-header {
@@ -98,6 +114,10 @@ button:focus {
 
 button:hover {
   background-color:#DDDDDD;
+}
+
+input:focus {
+  outline: 0;
 }
 
 a {
@@ -135,6 +155,10 @@ a:hover {
 .job-title {
   font-weight: 700;
   margin-bottom: 5px;
+}
+
+.job-company {
+  margin-top: 5px;
 }
 
 .meetup-title {

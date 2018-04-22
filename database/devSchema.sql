@@ -20,6 +20,7 @@ CREATE TABLE meetups (
   id VARCHAR(100) UNIQUE,
   name VARCHAR(255),
   groupname VARCHAR(255),
+  groupurl VARCHAR(1000),
   link VARCHAR(500),
   local_date VARCHAR(100)
 );

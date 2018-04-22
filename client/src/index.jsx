@@ -56,6 +56,7 @@ class App extends React.Component {
     .then(({data}) => {
       data.events.map((item) => {
         item.groupname = item.group.name;
+        item.groupurl = item.group.urlname;
       })
       this.setState({
         meetups: data.events,
@@ -83,9 +84,10 @@ class App extends React.Component {
       <div className="container">
         <div className="location">
         Enter your zipcode:
-        <input type="text" name="location" value={this.state.location} onChange={this.handleChange}></input>
+        <input className="location-input" type="text" ref="form" name="location" value={this.state.location} onChange={this.handleChange}></input>
         <button onClick={this.handleClick}>Set location</button>
         </div>
+        <div className="clear"></div>
         <Jobs search={this.searchJobs} jobs={this.state.jobs} handleQueryChange={this.handleJobQueryChange}/>
         <hr/>
         <br/>

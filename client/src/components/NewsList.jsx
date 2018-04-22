@@ -9,7 +9,7 @@ const NewsList = (props) => (
         <div className="news-title"><a href={item.url}>{item.title}</a></div>
         <div className="news-source">{item.source}</div>
         <div className="news-date">{moment(item.publishedat).fromNow()}</div>
-        <a href={item.url}><img src={item.urltoimage}></img></a>
+        <a href={item.url}><img src={item.urltoimage} className="news-img"></img></a>
         <div className="news-description">{item.description}</div>
         <button onClick={() => {props.handleClick(item)}}>{props.showFavorites ? "Delete Article" : "Save Article"}</button>
       </div>

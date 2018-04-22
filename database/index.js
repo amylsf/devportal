@@ -47,8 +47,8 @@ module.exports.getFavoriteNews = () => {
 }
 
 module.exports.saveMeetup = (meetup) => {
-  let queryText = `INSERT INTO meetups(id, name, groupname, link, local_date) VALUES($1, $2, $3, $4, $5) ON CONFLICT (id) DO NOTHING`;
-  let values = [meetup.id, meetup.name, meetup.groupname, meetup.link, meetup.local_date];
+  let queryText = `INSERT INTO meetups(id, name, groupname, groupurl, link, local_date) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT (id) DO NOTHING`;
+  let values = [meetup.id, meetup.name, meetup.groupname, meetup.groupurl, meetup.link, meetup.local_date];
   return db.query(queryText, values)
   .then((res) => {
     console.log(res);
