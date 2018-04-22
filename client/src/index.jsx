@@ -11,21 +11,24 @@ class App extends React.Component {
     super(props);
     this.state = {
       location: '10012',
-      query: null,
-      jobs: []
+      jobs: [],
+      meetups: [],
+      showFavorites: false
     }
     this.handleChange = this.handleChange.bind(this);
-    this.search = this.search.bind(this);
-    this.handleQueryChange = this.handleQueryChange.bind(this);
+    this.searchJobs = this.searchJobs.bind(this);
+    this.searchMeetups = this.searchMeetups.bind(this);
+    this.toggleFavorites = this.toggleFavorites.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    this.search();
+    this.searchJobs();
   }
 
-  search() {
+  searchJobs(query) {
     axios.post('/jobs', {
-      query: this.state.query || 'javascript',
+      query: query || 'javascript',
       location: this.state.location
     })
     .then(({data}) => {
@@ -38,16 +41,41 @@ class App extends React.Component {
     })
   }
 
+  //handle location change
   handleChange(event) {
     this.setState({
       location: event.target.value
     })
   }
 
-  handleQueryChange(event) {
-    this.setState({
-      query: event.target.value
+  searchMeetups(query) {
+    axios.post('/meetups', {
+      query: query || 'Javascript',
+      location: this.state.location
     })
+    .then(({data}) => {
+      data.events.map((item) => {
+        item.groupname = item.group.name;
+      })
+      this.setState({
+        meetups: data.events,
+        showFavorites: false
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  toggleFavorites() {
+    this.setState({
+      showFavorites: !this.state.showFavorites
+    })
+  }
+
+  handleClick() {
+    this.searchJobs();
+    this.searchMeetups();
   }
 
   render() {
@@ -56,14 +84,14 @@ class App extends React.Component {
         <div className="location">
         Enter your zipcode:
         <input type="text" name="location" value={this.state.location} onChange={this.handleChange}></input>
-        <button onClick={this.search}>Set location</button>
+        <button onClick={this.handleClick}>Set location</button>
         </div>
-        <Jobs search={this.search} jobs={this.state.jobs} query={this.state.query} location={this.state.location} handleQueryChange={this.handleQueryChange}/>
+        <Jobs search={this.searchJobs} jobs={this.state.jobs} handleQueryChange={this.handleJobQueryChange}/>
         <hr/>
         <br/>
         <News/>
         <div className="vertical-line"></div>
-        <Meetups location={this.state.location}/>
+        <Meetups toggleFavorites={this.toggleFavorites} search={this.searchMeetups} showFavorites={this.state.showFavorites} meetups={this.state.meetups}/>
         <div className="clear"></div>
       </div>
     )

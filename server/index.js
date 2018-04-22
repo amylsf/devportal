@@ -5,6 +5,7 @@ let token = require('../config.js');
 let port = 3000;
 let app = express();
 let db = require('../database/index.js');
+let zipcodes = require('zipcodes');
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
@@ -30,7 +31,8 @@ app.post('/news', (req, res) => {
 //meetup API request
 app.post('/meetups', (req, res) => {
   let query = req.body.query;
-  axios.get(`https://api.meetup.com/find/upcoming_events?key=${token.MEETUP_TOKEN}&sign=true&photo-host=public&page=20&text=${query}&radius=20&order=best`)
+  let location = zipcodes.lookup(req.body.location);
+  axios.get(`https://api.meetup.com/find/upcoming_events?key=${token.MEETUP_TOKEN}&sign=true&photo-host=public&page=20&text=${query}&radius=20&lon=${location.longitude}&lat=${location.latitude}&order=best`)
   .then(({data}) => {
     res.status(200).send(data);
   })
