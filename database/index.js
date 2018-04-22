@@ -1,11 +1,12 @@
-const pg = require('pg');
+let pg = require('pg');
+let config = require('../config.js');
 
 let connection = {
-  host: 'localhost',
+  host: config.HOST,
   port: 5432,
-  database: 'devportal',
-  user: '',
-  password: ''
+  database: 'devportaldb',
+  user: config.USER,
+  password: config.PASSWORD
 }
 
 let db = new pg.Pool(connection);

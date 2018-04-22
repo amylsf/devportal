@@ -1,9 +1,3 @@
-DROP DATABASE IF EXISTS devportal;
-
-CREATE DATABASE devportal;
-
-\connect devportal;
-
 CREATE TABLE news (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) UNIQUE,
