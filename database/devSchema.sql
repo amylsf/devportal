@@ -24,3 +24,12 @@ CREATE TABLE meetups (
   link VARCHAR(500),
   local_date VARCHAR(100)
 );
+
+CREATE TABLE jobs (
+  job_id SERIAL PRIMARY KEY,
+  id VARCHAR(100) UNIQUE,
+  title VARCHAR(255),
+  url VARCHAR(500),
+  company_logo VARCHAR(500),
+  company_url VARCHAR(500)
+)

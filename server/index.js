@@ -98,3 +98,25 @@ app.get('/favoriteMeetups', (req, res) => {
     res.status(200).send(data);
   })
 })
+
+//save job to favorites
+app.post('/saveJob', (req, res) => {
+  db.saveJob(req.body.job).then(() => {
+    res.status(201).send('Saved Job to Favorites');
+  })
+})
+
+//delete job from favorites
+app.post('/deleteJob', (req, res) => {
+  db.removeJob(req.body.job).then(() => {
+    res.status(201).send('Job deleted from favorites');
+  })
+})
+
+//get favorite jobs
+app.get('/favoriteJobs', (req, res) => {
+  db.getFavoriteJobs()
+  .then((data) => {
+    res.status(200).send(data);
+  })
+})

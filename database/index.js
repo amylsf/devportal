@@ -80,3 +80,38 @@ module.exports.getFavoriteMeetups = () => {
     console.log(err);
   })
 }
+
+module.exports.saveJob = (job) => {
+  let queryText = `INSERT INTO jobs(id, title, url, company_logo, company_url) VALUES($1, $2, $3, $4, $5)`;
+  let values = [job.id, job.title, job.url, job.company_logo, job.company_url];
+  return db.query(queryText, values)
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+module.exports.removeJob = (job) => {
+  let queryText = `DELETE FROM jobs WHERE id=($1)`;
+  let values = [job.id];
+  return db.query(queryText, values)
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+module.exports.getFavoriteJobs = () => {
+  let queryText = `SELECT * FROM jobs`;
+  return db.query(queryText)
+  .then((res) => {
+    return res.rows;
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}

@@ -13,12 +13,14 @@ class App extends React.Component {
       location: '10012',
       jobs: [],
       meetups: [],
-      showFavorites: false
+      showFavoriteMeetups: false,
+      showFavoriteJobs: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.searchJobs = this.searchJobs.bind(this);
     this.searchMeetups = this.searchMeetups.bind(this);
-    this.toggleFavorites = this.toggleFavorites.bind(this);
+    this.toggleFavoriteMeetups = this.toggleFavoriteMeetups.bind(this);
+    this.toggleFavoriteJobs = this.toggleFavoriteJobs.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -33,7 +35,8 @@ class App extends React.Component {
     })
     .then(({data}) => {
       this.setState({
-        jobs: data
+        jobs: data,
+        showFavoriteJobs: false
       })
     })
     .catch((err) => {
@@ -60,7 +63,7 @@ class App extends React.Component {
       })
       this.setState({
         meetups: data.events,
-        showFavorites: false
+        showFavoriteMeetups: false
       })
     })
     .catch((err) => {
@@ -68,9 +71,15 @@ class App extends React.Component {
     })
   }
 
-  toggleFavorites() {
+  toggleFavoriteMeetups() {
     this.setState({
-      showFavorites: !this.state.showFavorites
+      showFavoriteMeetups: !this.state.showFavoriteMeetups
+    })
+  }
+
+  toggleFavoriteJobs() {
+    this.setState({
+      showFavoriteJobs: !this.state.showFavoriteJobs
     })
   }
 
@@ -88,12 +97,12 @@ class App extends React.Component {
         <button onClick={this.handleClick}>Set location</button>
         </div>
         <div className="clear"></div>
-        <Jobs search={this.searchJobs} jobs={this.state.jobs} handleQueryChange={this.handleJobQueryChange}/>
+        <Jobs search={this.searchJobs} jobs={this.state.jobs} toggleFavorites={this.toggleFavoriteJobs} showFavorites={this.state.showFavoriteJobs}/>
         <hr/>
         <br/>
         <News/>
         <div className="vertical-line"></div>
-        <Meetups toggleFavorites={this.toggleFavorites} search={this.searchMeetups} showFavorites={this.state.showFavorites} meetups={this.state.meetups}/>
+        <Meetups toggleFavorites={this.toggleFavoriteMeetups} search={this.searchMeetups} showFavorites={this.state.showFavoriteMeetups} meetups={this.state.meetups}/>
         <div className="clear"></div>
       </div>
     )
