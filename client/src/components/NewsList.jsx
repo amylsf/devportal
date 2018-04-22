@@ -3,6 +3,7 @@ import moment from "moment";
 
 const NewsList = (props) => (
   <div className="news-list">
+    {console.log(props.articles)}
     {props.articles.map((item, i) => {
       return(
       <div key={i} className="news">

@@ -2,8 +2,8 @@ const pg = require('pg');
 
 let connection = {
   host: 'localhost',
-  port: 3000,
-  database: 'devPortal',
+  port: 5432,
+  database: 'devportal',
   user: '',
   password: ''
 }
@@ -11,7 +11,7 @@ let connection = {
 let db = new pg.Pool(connection);
 
 module.exports.saveNews = (article) => {
-  let queryText = `INSERT INTO news(title, author, source.name, urlToImage, description, publishedAt) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT (title) DO NOTHING`;
+  let queryText = `INSERT INTO news(title, author, "source.name", urlToImage, description, publishedAt) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT (title) DO NOTHING`;
   let values = [article.title, article.author, article.source.name, article.urlToImage, article.description, article.publishedAt];
   return db.query(queryText, values)
   .then((res) => {
@@ -38,7 +38,7 @@ module.exports.getFavoriteNews = () => {
   let queryText = `SELECT * FROM news`;
   return db.query(queryText)
   .then((res) => {
-    console.log(res);
+    res.rows[0];
   })
   .catch((err) => {
     console.log(err);
@@ -46,7 +46,7 @@ module.exports.getFavoriteNews = () => {
 }
 
 module.exports.saveMeetup = (meetup) => {
-  let queryText = `INSERT INTO meetups(id, name, group.name, link, local_date) VALUES($1, $2, $3, $4, $5) ON CONFLICT (id) DO NOTHING`;
+  let queryText = `INSERT INTO meetups(id, name, "group.name", link, local_date) VALUES($1, $2, $3, $4, $5) ON CONFLICT (id) DO NOTHING`;
   let values = [meetup.id, meetup.name, meetup.group.name, meetup.link, meetup.local_date];
   return db.query(queryText, values)
   .then((res) => {

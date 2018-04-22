@@ -71,6 +71,7 @@ app.post('/deleteNews', (req, res) => {
 app.get('/favoriteNews', (req, res) => {
   db.getFavoriteNews()
   .then((data) => {
+    console.log(data)
     res.status(200).send(data);
   })
 })

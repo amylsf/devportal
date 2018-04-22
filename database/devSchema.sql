@@ -1,6 +1,8 @@
 DROP DATABASE IF EXISTS devportal;
 
-CREATE DATABASE devPortal;
+CREATE DATABASE devportal;
+
+\connect devportal;
 
 CREATE TABLE news (
   id SERIAL PRIMARY KEY,
@@ -10,7 +12,7 @@ CREATE TABLE news (
   urlToImage VARCHAR(255),
   description VARCHAR(1000),
   publishedAt VARCHAR(100)
-)
+);
 
 CREATE TABLE meetups (
   meetup_id SERIAL PRIMARY KEY,
@@ -19,4 +21,4 @@ CREATE TABLE meetups (
   "group.name" VARCHAR(255),
   link VARCHAR(500),
   local_date VARCHAR(100)
-)
+);
