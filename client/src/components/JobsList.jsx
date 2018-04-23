@@ -32,6 +32,7 @@ class JobsList extends React.Component {
             index={i}
             showApply={this.state.showApply}
             nowShowing={this.state.showApply[i]}
+            handleClick={this.props.handleClick}
           />
         )
       })}
