@@ -16,7 +16,6 @@ body {
 .news-container {
   float: left;
   margin-left: 40px;
-  margin-right: 150px;
   width: 50%;
 }
 
@@ -31,13 +30,13 @@ body {
 }
 
 .news-img {
-  width: 600px;
+  width: 95%;
   margin-bottom: 5px;
   cursor:pointer;
 }
 
 .meetups-container {
-  width: 30%;
+  width: 36%;
   float: right;
   margin-right: 40px;
 }
@@ -61,7 +60,7 @@ body {
   margin-right: 40px;
   margin-bottom: 20px;
   padding: 0;
-  width: 1300px;
+  width: 95%;
   height: 170px;
   overflow: scroll;
 }
@@ -136,7 +135,7 @@ a:hover {
   font-weight: 600; 
   margin-bottom: 10px;
   font-size: 18px;
-  width: 600px;
+  width: 95%;
 }
 
 .news-source {
@@ -150,7 +149,7 @@ a:hover {
 
 .news-description {
   margin-bottom: 5px;
-  width: 600px;
+  width: 95%;
 }
 
 .job-title {
