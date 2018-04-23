@@ -23,10 +23,14 @@ body {
   overflow-y: auto;
   height: 700px;
   margin-top: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
 }
 
 .news {
+  margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 .news-img {
@@ -45,10 +49,14 @@ body {
   height: 700px;
   overflow-y: scroll;
   margin-top: 20px;
+  margin-right: 5px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
 }
 
 .meetup {
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 
 .clear {
@@ -59,10 +67,12 @@ body {
   margin-left: 40px;
   margin-right: 40px;
   margin-bottom: 20px;
-  padding: 0;
+  margin-top: 20px;
   width: 95%;
   height: 170px;
   overflow: scroll;
+  background-color: #f2f2f2;
+  border-radius: 8px;
 }
 
 .jobs-list {
@@ -113,7 +123,13 @@ button:focus {
 }
 
 button:hover {
-  background-color:#DDDDDD;
+  background-color:rgba(78, 192, 233, 0.75);
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: #e0e0e0;
 }
 
 input:focus {
@@ -176,10 +192,14 @@ a:hover {
 }
 
 hr {
+  margin-top: 20px;
+}
+
+.main-hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid rgb(8, 8, 8);
   margin: 1em 0;
   padding: 0;
 }

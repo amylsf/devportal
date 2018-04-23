@@ -98,7 +98,7 @@ class App extends React.Component {
         </div>
         <div className="clear"></div>
         <Jobs search={this.searchJobs} jobs={this.state.jobs} toggleFavorites={this.toggleFavoriteJobs} showFavorites={this.state.showFavoriteJobs}/>
-        <hr/>
+        <hr className="main-hr"/>
         <br/>
         <News/>
         <div className="vertical-line"></div>
