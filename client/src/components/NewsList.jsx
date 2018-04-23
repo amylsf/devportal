@@ -7,7 +7,7 @@ const NewsList = (props) => (
       return(
       <div key={i} className="news">
         <div className="news-title"><a href={item.url}>{item.title}</a></div>
-        <div className="news-source">{item.source}</div>
+        <div className="news-source" onClick={() => {props.getSource(item.source)}}>{item.source}</div>
         <div className="news-date">{moment(item.publishedat).fromNow()}</div>
         <a href={item.url}><img src={item.urltoimage} className="news-img"></img></a>
         <div className="news-description">{item.description}</div>

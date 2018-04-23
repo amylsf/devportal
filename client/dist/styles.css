@@ -159,6 +159,13 @@ a:hover {
   margin-bottom: 5px;
 }
 
+.news-source:hover {
+  color: #1BA5D7;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
 .news-date {
   margin-bottom: 5px;
 }

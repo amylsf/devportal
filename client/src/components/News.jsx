@@ -16,6 +16,7 @@ class News extends React.Component {
     this.save = this.save.bind(this);
     this.toggleFavorites = this.toggleFavorites.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.getSource = this.getSource.bind(this);
   }
 
   componentDidMount() {
@@ -23,9 +24,10 @@ class News extends React.Component {
     this.getFavorites();
   }
 
-  search() {
+  search(source) {
     axios.post('/news', {
-      term: this.state.query
+      term: this.state.query,
+      source: source || 'recode,hacker-news,the-verge,techcrunch'
     })
     .then(({data}) => {
       data.articles.map((item) => {
@@ -41,6 +43,20 @@ class News extends React.Component {
     .catch((err) => {
       console.log(err);
     })
+  }
+
+  getSource(source) {
+    let newSource = ''
+    if (source === 'TechCrunch') {
+      newSource = 'techcrunch'
+    } else if (source === 'The Verge') {
+      newSource = 'the-verge'
+    } else if (source === 'Hacker News') {
+      newSource = 'hacker-news'
+    } else if (source === 'Recode') {
+      newSource = 'recode' 
+    }
+    this.search(newSource);
   }
 
   handleChange(event) {
@@ -98,9 +114,9 @@ class News extends React.Component {
       <div className="news-container">
         <div className="header">Tech News</div>
         <input type="text" name="query" value={this.state.query} onChange={this.handleChange}></input>
-        <button onClick={this.search}>Search News</button>
+        <button onClick={() => {this.search('')}}>Search News</button>
         <button onClick={this.toggleFavorites}>{this.state.showFavorites ? "Search Results" : "Saved articles"}</button>
-        <NewsList showFavorites={this.state.showFavorites} handleClick={this.handleClick} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
+        <NewsList getSource={this.getSource} showFavorites={this.state.showFavorites} handleClick={this.handleClick} articles={this.state.showFavorites ? this.state.favorites : this.state.articles}/>
       </div>
     )
   }

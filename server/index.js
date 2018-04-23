@@ -19,7 +19,9 @@ app.listen(port, function() {
 //news api request
 app.post('/news', (req, res) => {
   let query = req.body.term;
-  axios.get(`https://newsapi.org/v2/everything?q=${query}&sortBy=publishedAt&sources=recode,hacker-news,the-verge,techcrunch&language=en&apiKey=${token.NEWS_TOKEN}`)
+  let source = req.body.source
+  let queryStr = `https://newsapi.org/v2/everything?q=${query}&sortBy=publishedAt&sources=${source}&language=en&apiKey=${token.NEWS_TOKEN}`
+  axios.get(queryStr)
   .then(({data}) => {
     res.status(200).send(data)
   })
